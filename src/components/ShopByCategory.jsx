@@ -34,45 +34,63 @@ const categories = [
 
 function ShopByCategory() {
   return (
-    <section className="shop-category">
-      <div className="shop-category-header">
-        <h2>SHOP BY CATEGORY</h2>
+    <>
+      <section className="shop-category">
+        <div className="shop-category-header">
+          <h2>SHOP BY CATEGORY</h2>
 
-        <div className="shop-category-ornament">
-          <span></span>
-          <span>✦</span>
-          <span></span>
-        </div>
-      </div>
-
-      <div className="category-list">
-        {categories.map((category) => (
-          <div className="category-item" key={category.id}>
-            {category.sale ? (
-              <div className="category-sale">
-                <span className="sale-label">UP TO</span>
-                <strong>{category.discount}</strong>
-                <span className="sale-label">OFF</span>
-              </div>
-            ) : (
-              <div className="category-image-wrapper">
-                <img
-                  src={category.image}
-                  alt={category.name}
-                  className="category-image"
-                />
-              </div>
-            )}
-
-            <h3>{category.name}</h3>
-
-            <button type="button" className="category-link">
-              VIEW ALL
-            </button>
+          <div className="shop-category-ornament">
+            <span></span>
+            <span>✦</span>
+            <span></span>
           </div>
-        ))}
-      </div>
-    </section>
+        </div>
+
+        <div className="category-list">
+          {categories.map((category) => (
+            <div className="category-item" key={category.id}>
+              {category.sale ? (
+                <div className="category-sale">
+                  <span className="sale-label">UP TO</span>
+                  <strong>{category.discount}</strong>
+                  <span className="sale-label">OFF</span>
+                </div>
+              ) : (
+                <div className="category-image-wrapper">
+                  <img
+                    src={category.image}
+                    alt={category.name}
+                    className="category-image"
+                  />
+                </div>
+              )}
+
+              <h3>{category.name}</h3>
+
+              <button type="button" className="category-link">
+                VIEW ALL
+              </button>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="brand-video-section">
+        <div className="brand-video-container">
+          <video
+            className="brand-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          >
+            <source src="/videos/k-perumal-silks-ad.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </section>
+    </>
   )
 }
 

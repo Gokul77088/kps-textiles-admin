@@ -1661,6 +1661,28 @@ body {
   line-height: 1;
 }
 
+.brand-video-section {
+  width: 100%;
+  padding: 55px 0;
+  background-image: url("/shop-category-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.brand-video-container {
+  width: min(94%, 1400px);
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 18px;
+}
+.brand-video {
+  display: block;
+  width: 100%;
+  height: 420px;
+  aspect-ratio: 16 / 9;
+  object-fit: none;
+}
+
 /* =========================================================
    LARGE DESKTOP
 ========================================================= */
@@ -2417,6 +2439,21 @@ body {
 
   .category-link {
     font-size: 9px;
+  }
+
+  .brand-video-section {
+    padding: 10px 0;
+    background-size: cover;
+    background-position: center;
+  }
+  .brand-video-container {
+    width: 94%;
+    border-radius: 12px;
+  }
+  .brand-video {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    height: 220px;
   }
 }
 

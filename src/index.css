@@ -1769,17 +1769,20 @@ body {
     margin: 0;
     min-height: 390px;
     padding: 42px 24px 58px;
-    background: linear-gradient(180deg, #f2f7f8 0%, #f5f8f6 100%);
+    background: transparent;
   }
 
   .hero.hero-silk .hero-decoration {
-    top: 310px;
+    position: absolute;
+    top: 245px;
     left: 0;
     right: 0;
+    bottom: 0;
     width: 100% !important;
-    height: calc(100% - 310px);
+    height: auto;
     z-index: 3;
     overflow: hidden;
+    pointer-events: none;
   }
 
   .hero.hero-silk .hero-decoration img {
@@ -1789,7 +1792,7 @@ body {
     height: 100% !important;
     object-fit: cover !important;
     object-position: center right !important;
-    opacity: 0.48 !important;
+    opacity: 0.55 !important;
     transform: none !important;
   }
 

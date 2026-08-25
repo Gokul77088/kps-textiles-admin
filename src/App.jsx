@@ -8,6 +8,8 @@ import ProductDetail from './pages/ProductDetails'
 import AnnouncementBar from './components/AnnouncementBar'
 import Navbar from './components/Navbar'
 import HeroCarousel from './components/HeroCarousel'
+import BenefitsStrip from './components/BenefitsStrip'
+import ShopByCategory from './components/ShopByCategory'
 import './App.css'
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
       <AnnouncementBar/>
       <Navbar/>
       <HeroCarousel/>
+      <BenefitsStrip/>
+      <ShopByCategory/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/shop" element={<Shop/>}/>

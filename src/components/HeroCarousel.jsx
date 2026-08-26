@@ -26,8 +26,8 @@ const slides = [
         timeless Indian artistry.
       </>
     ),
-    image: "/hero-heritage.png",
-    decoration: "/hero-heritage-decoration.png",
+    image: "/hero-heritage.webp",
+    decoration: "/hero-heritage-decoration.webp",
     imageAlt: "Purple Kanjivaram silk saree",
     button: "SHOP SAREES",
     explore: "Explore Collection",
@@ -51,8 +51,8 @@ const slides = [
         moments worth remembering.
       </>
     ),
-    image: "/hero-silk.png",
-    decoration: "/hero-silk-decoration.png",
+    image: "/hero-silk.webp",
+    decoration: "/hero-silk-decoration.webp",
     imageAlt: "Blue pure silk saree",
     button: "SHOP SAREES",
     explore: "Explore Collection",
@@ -76,8 +76,8 @@ const slides = [
         handloom craftsmanship.
       </>
     ),
-    image: "/hero-handloom.png",
-    decoration: "/hero-handloom-decoration.png",
+    image: "/hero-handloom.webp",
+    decoration: "/hero-handloom-decoration.webp",
     imageAlt: "Traditional handloom saree",
     button: "SHOP SAREES",
     explore: "Explore Collection",
@@ -103,8 +103,8 @@ const slides = [
       </>
     ),
 
-    image: "/hero-festive.png",
-    decoration: "/hero-festive-decoration.png",
+    image: "/hero-festive.webp",
+    decoration: "/hero-festive-decoration.webp",
     imageAlt: "Red festive silk saree",
     button: "SHOP SAREES",
     explore: "Explore Collection",

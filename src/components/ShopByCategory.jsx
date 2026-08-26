@@ -2,27 +2,27 @@ const categories = [
   {
     id: 1,
     name: "SAREES",
-    image: "/category-sarees.png",
+    image: "/category-sarees.webp",
   },
   {
     id: 2,
     name: "KURTIS",
-    image: "/category-kurtis.png",
+    image: "/category-kurtis.webp",
   },
   {
     id: 3,
     name: "SILK MATERIALS",
-    image: "/category-dress-materials.png",
+    image: "/category-dress-materials.webp",
   },
   {
     id: 4,
     name: "MEN",
-    image: "/category-men.png",
+    image: "/category-men.webp",
   },
   {
     id: 5,
     name: "KIDS",
-    image: "/category-kids.png",
+    image: "/category-kids.webp",
   },
   {
     id: 6,
@@ -34,7 +34,6 @@ const categories = [
 
 function ShopByCategory() {
   return (
-    <>
       <section className="shop-category">
         <div className="shop-category-header">
           <h2>SHOP BY CATEGORY</h2>
@@ -74,23 +73,6 @@ function ShopByCategory() {
           ))}
         </div>
       </section>
-
-      <section className="brand-video-section">
-        <div className="brand-video-container">
-          <video
-            className="brand-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          >
-            <source src="/videos/k-perumal-silks-ad.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </section>
-    </>
   )
 }
 

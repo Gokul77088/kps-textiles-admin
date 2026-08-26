@@ -10,6 +10,7 @@ import Navbar from './components/Navbar'
 import HeroCarousel from './components/HeroCarousel'
 import BenefitsStrip from './components/BenefitsStrip'
 import ShopByCategory from './components/ShopByCategory'
+import BrandVideo from './components/BrandVideo'
 import './App.css'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <HeroCarousel/>
       <BenefitsStrip/>
       <ShopByCategory/>
+      <BrandVideo/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/shop" element={<Shop/>}/>

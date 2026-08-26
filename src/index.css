@@ -1541,7 +1541,7 @@ body {
   padding: 28px 30px 24px;
   background: #f8f1e4;
   box-sizing: border-box;
-  background-image: url("/shop-category-bg.png");
+  background-image: url("/shop-category-bg.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -1661,10 +1661,15 @@ body {
   line-height: 1;
 }
 
+/* =========================================================
+      BRAND VIDEO
+========================================================= */
+
+
 .brand-video-section {
   width: 100%;
   padding: 55px 0;
-  background-image: url("/shop-category-bg.png");
+  background-image: url("/shop-category-bg.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2440,6 +2445,14 @@ body {
   .category-link {
     font-size: 9px;
   }
+}
+
+
+/* =========================================================
+   SHOP BY CATEGORY - MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
 
   .brand-video-section {
     padding: 10px 0;
@@ -2453,7 +2466,7 @@ body {
   .brand-video {
     aspect-ratio: 16 / 9;
     object-fit: cover;
-    height: 220px;
+    height: 195px;
   }
 }
 

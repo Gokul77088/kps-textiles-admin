@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import {
   ArrowRight,
   ChevronLeft,
@@ -111,13 +111,109 @@ const slides = [
   },
 ]
 
+const imageCache = new Map()
+
+function preloadImage(src) {
+  if (imageCache.has(src)) {
+    return imageCache.get(src)
+  }
+
+  const promise = new Promise((resolve, reject) => {
+    const img = new Image()
+
+    img.onload = async () => {
+      try {
+        if (img.decode) {
+          await img.decode()
+        }
+      } catch {
+        // Image is already loaded, so continue anyway
+      }
+
+      resolve()
+    }
+
+    img.onerror = reject
+    img.src = src
+  })
+
+  imageCache.set(src, promise)
+
+  return promise
+}
+
+function preloadSlide(slide) {
+  return Promise.all([
+    preloadImage(slide.image),
+    preloadImage(slide.decoration),
+  ])
+}
+
+
+
 function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [readySlide, setReadySlide] = useState(null)
+
+  const loadingSlide = useRef(false)
+
   const slide = slides[currentSlide]
 
-  /* ======================================================
-     NEXT
-  ====================================================== */
+  /*
+  ======================================================
+  LOAD CURRENT SLIDE
+  ======================================================
+  */
+
+  useEffect(() => {
+    let cancelled = false
+
+    const loadSlide = async () => {
+      loadingSlide.current = true
+
+      try {
+        await preloadSlide(slides[currentSlide])
+
+        if (!cancelled) {
+          setReadySlide(currentSlide)
+        }
+      } catch (error) {
+        console.error("Failed to load hero slide:", error)
+
+        if (!cancelled) {
+          setReadySlide(currentSlide)
+        }
+      } finally {
+        loadingSlide.current = false
+      }
+    }
+
+    loadSlide()
+
+    return () => {
+      cancelled = true
+    }
+  }, [currentSlide])
+
+  /*
+  ======================================================
+  PRELOAD NEXT SLIDE IN BACKGROUND
+  ======================================================
+  */
+
+  useEffect(() => {
+    const nextIndex = (currentSlide + 1) % slides.length
+
+    preloadSlide(slides[nextIndex]).catch(() => {
+      console.warn("Could not preload next hero slide")
+    })
+  }, [currentSlide])
+
+  /*
+  ======================================================
+  NEXT
+  ======================================================
+  */
 
   const nextSlide = () => {
     setCurrentSlide((current) => {
@@ -125,9 +221,11 @@ function HeroCarousel() {
     })
   }
 
-  /* ======================================================
-     PREVIOUS
-  ====================================================== */
+  /*
+  ======================================================
+  PREVIOUS
+  ======================================================
+  */
 
   const previousSlide = () => {
     setCurrentSlide((current) => {
@@ -135,9 +233,23 @@ function HeroCarousel() {
     })
   }
 
-  /* ======================================================
-     AUTO PLAY
-  ====================================================== */
+  /*
+  ======================================================
+  GO TO SPECIFIC SLIDE
+  ======================================================
+  */
+
+  const goToSlide = (index) => {
+    if (index === currentSlide) return
+
+    setCurrentSlide(index)
+  }
+
+  /*
+  ======================================================
+  AUTO PLAY
+  ======================================================
+  */
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -145,15 +257,24 @@ function HeroCarousel() {
         return (current + 1) % slides.length
       })
     }, 6000)
+
     return () => clearInterval(timer)
   }, [])
 
-  /* ======================================================
-     JSX
-  ====================================================== */
+  /*
+  ======================================================
+  WAIT UNTIL BOTH IMAGE + DECORATION ARE READY
+  ======================================================
+  */
+
+  const isReady = readySlide === currentSlide
 
   return (
-    <section className={`hero hero-${slide.type}`}>
+    <section
+      className={`hero hero-${slide.type} ${
+        isReady ? "hero-ready" : "hero-loading"
+      }`}
+    >
       {/* ==================================================
           DECORATION
       ================================================== */}
@@ -168,12 +289,15 @@ function HeroCarousel() {
 
       <div className="hero-content">
         <div className="hero-eyebrow">{slide.eyebrow}</div>
+
         <div className="hero-ornament">
           <span className="ornament-line"></span>
           <span className="ornament-diamond">✦</span>
           <span className="ornament-line"></span>
         </div>
+
         <h1>{slide.title}</h1>
+
         <p className="hero-description">{slide.description}</p>
 
         {/* ==================================================
@@ -185,6 +309,7 @@ function HeroCarousel() {
             <span>{slide.button}</span>
             <ArrowRight size={18} />
           </button>
+
           <button className="hero-explore-button" type="button">
             <span>{slide.explore}</span>
             <ArrowRight size={17} />
@@ -200,13 +325,17 @@ function HeroCarousel() {
             <div className="hero-feature-icon">
               <Leaf size={22} />
             </div>
+
             <span>Handpicked Sarees</span>
           </div>
+
           <div className="hero-feature-divider"></div>
+
           <div className="hero-feature">
             <div className="hero-feature-icon">
               <Flower2 size={22} />
             </div>
+
             <span>Crafted in India</span>
           </div>
         </div>
@@ -221,8 +350,8 @@ function HeroCarousel() {
       </div>
 
       {/* ==================================================
-    S-CURVE — BANNER 1 ONLY
-================================================== */}
+          S-CURVE — HERITAGE ONLY
+      ================================================== */}
 
       {slide.type === "heritage" && (
         <div className="hero-curve">
@@ -231,56 +360,39 @@ function HeroCarousel() {
             preserveAspectRatio="none"
             aria-hidden="true"
           >
-            {/* =================================================
-          CREAM CURVED OVERLAY
-      ================================================= */}
-
             <path
               className="hero-curve-fill"
               d="
-          M 0 0
-
-          H 125
-
-          C 190 90,
-            205 170,
-            145 245
-
-          C 82 325,
-            72 405,
-            135 475
-
-          C 160 505,
-            160 555,
-            110 600
-
-          H 0
-
-          Z
-        "
+                M 0 0
+                H 125
+                C 190 90,
+                  205 170,
+                  145 245
+                C 82 325,
+                  72 405,
+                  135 475
+                C 160 505,
+                  160 555,
+                  110 600
+                H 0
+                Z
+              "
             />
-
-            {/* =================================================
-          GOLD CURVE OUTLINE
-      ================================================= */}
 
             <path
               className="hero-curve-line"
               d="
-          M 125 0
-
-          C 190 90,
-            205 170,
-            145 245
-
-          C 82 325,
-            72 405,
-            135 475
-
-          C 160 505,
-            160 555,
-            110 600
-        "
+                M 125 0
+                C 190 90,
+                  205 170,
+                  145 245
+                C 82 325,
+                  72 405,
+                  135 475
+                C 160 505,
+                  160 555,
+                  110 600
+              "
             />
           </svg>
         </div>
@@ -322,7 +434,7 @@ function HeroCarousel() {
             key={item.id}
             type="button"
             className={index === currentSlide ? "active" : ""}
-            onClick={() => setCurrentSlide(index)}
+            onClick={() => goToSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}

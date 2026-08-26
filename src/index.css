@@ -715,6 +715,21 @@ body {
   box-sizing: border-box;
 }
 
+.hero-loading .hero-image,
+.hero-loading .hero-decoration {
+  opacity: 0;
+}
+
+.hero-ready .hero-image,
+.hero-ready .hero-decoration {
+  opacity: 1;
+}
+
+.hero-image,
+.hero-decoration {
+  transition: opacity 0.25s ease;
+}
+
 .hero::before {
   content: "";
   position: absolute;

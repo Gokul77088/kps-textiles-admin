@@ -12,6 +12,7 @@ import BenefitsStrip from './components/BenefitsStrip'
 import ShopByCategory from './components/ShopByCategory'
 import BrandVideo from './components/BrandVideo'
 import FeaturedCollection from './components/FeaturedCollection'
+import Collections from './components/Collections'
 import './App.css'
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <ShopByCategory/>
       <BrandVideo/>
       <FeaturedCollection/>
+      <Collections/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/shop" element={<Shop/>}/>

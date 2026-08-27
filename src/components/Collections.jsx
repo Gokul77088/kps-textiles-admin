@@ -279,7 +279,7 @@ function Collections() {
 
         <div className="collections-ornament">
           <span></span>
-          <b>✦</b>
+          <b>✥</b>
           <span></span>
         </div>
 
@@ -345,7 +345,7 @@ function Collections() {
 
                   <div className="collection-divider">
                     <span></span>
-                    <b>✦</b>
+                    <b>❃</b>
                     <span></span>
                   </div>
 

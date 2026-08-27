@@ -3660,10 +3660,30 @@ body {
     margin: 12px auto 14px;
   }
 
-  .collections-ornament span:first-child,
-  .collections-ornament span:last-child {
-    width: 30px;
-  }
+  .collection-divider span:first-child,
+.collection-divider span:last-child {
+  display: block;
+  width: 30px;
+  height: 1px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #b98232,
+      #d4a04a
+    );
+}
+
+.collection-divider span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      #d4a04a,
+      #b98232,
+      transparent
+    );
+}
+
 
   .collections-ornament b {
     font-size: 11px;
@@ -3727,10 +3747,6 @@ body {
   .collection-divider {
     gap: 5px;
     margin: 5px auto;
-  }
-
-  .collection-divider span {
-    width: 17px;
   }
 
   .collection-divider b {

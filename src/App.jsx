@@ -11,6 +11,8 @@ import Dashboard from './pages/admin/Dashboard'
 import Products from "./pages/admin/Products"
 import Categories from "./pages/admin/Categories"
 import Settings from "./pages/admin/Settings"
+import Login from './pages/admin/Login'
+import ProtectedRoute from './components/admin/ProtectedRoute'
 import './App.css'
 
 function App() {
@@ -26,13 +28,16 @@ function App() {
           <Route path="/contact" element={<Contact />} />
         </Route>
 
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="products" element={<Products />} />
-          <Route path="categories" element={<Categories />} />
-          <Route path="settings" element={<Settings />} />
+          <Route path="/admin/login" element={<Login/>}/>
+        <Route element={<ProtectedRoute/>}>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="products" element={<Products />} />
+            <Route path="categories" element={<Categories />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
         </Route>
-      </Routes>
+      </Routes> 
     </BrowserRouter>
   )
 }

@@ -2,7 +2,8 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 function Login() {
-    const navigate =  useNavigate()
+  const navigate = useNavigate()
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -15,33 +16,38 @@ function Login() {
 
     // EMAIL VALIDATION
 
-    if (!email.trim()){
-        newErrors.email = "Email is required"
-    }else if (!email.includes('@')){
-        newErrors.email = "Please enter a valid email"
+    if (!email.trim()) {
+      newErrors.email = "Email is required"
+    } else if (!email.includes("@")) {
+      newErrors.email = "Please enter a valid email"
     }
 
     // PASSWORD VALIDATION
 
-    if (!password.trim()){
-        newErrors.password = "Password is required"
+    if (!password.trim()) {
+      newErrors.password = "Password is required"
     }
 
     setErrors(newErrors)
 
-    if (Object.keys(newErrors).length > 0){
-        return
+    // STOP IF VALIDATION FAILED
+
+    if (Object.keys(newErrors).length > 0) {
+      return
     }
 
     // DUMMY AUTHENTICATION
-    
+
     if (email === "admin@kps.com" && password === "admin123") {
-        localStorage.setItem("isLoggedIn", "true")
-        navigate ("/admin/dashboard")
-    }else{
-        setErrors({
-            login: "Invalid email  or  password"
-        })
+      // Save login status
+      localStorage.setItem("admin-auth", "true")
+
+      // Redirect to dashboard
+      navigate("/admin/dashboard")
+    } else {
+      setErrors({
+        login: "Invalid email or password",
+      })
     }
   }
 
@@ -50,6 +56,8 @@ function Login() {
       <h1>KPS Textiles Admin Login</h1>
 
       <form onSubmit={handleSubmit}>
+        {/* EMAIL */}
+
         <div>
           <label>Email</label>
 
@@ -62,6 +70,8 @@ function Login() {
           {errors.email && <p>{errors.email}</p>}
         </div>
 
+        {/* PASSWORD */}
+
         <div>
           <label>Password</label>
 
@@ -70,14 +80,20 @@ function Login() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
+
           {errors.password && <p>{errors.password}</p>}
         </div>
 
-        {errors.login && ( <p>{errors.login}</p>)}
+        {/* LOGIN ERROR */}
+
+        {errors.login && <p>{errors.login}</p>}
+
+        {/* LOGIN BUTTON */}
+
         <button type="submit">Login</button>
       </form>
     </div>
   )
 }
 
-export default Login;
+export default Login

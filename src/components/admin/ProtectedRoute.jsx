@@ -1,13 +1,13 @@
 import { Navigate, Outlet } from "react-router-dom"
 
 function ProtectedRoute() {
-  const isLoggedIn = localStorage.getItem("isLoggedIn")
+  const isAuthenticated = localStorage.getItem("admin-auth") === "true";
 
-  if (!isLoggedIn) {
-    return <Navigate to="/admin/login" replace />
+  if (!isAuthenticated) {
+    return ( <Navigate to="/admin/login" replace />)
   }
 
   return <Outlet />
 }
 
-export default ProtectedRoute
+export default ProtectedRoute;

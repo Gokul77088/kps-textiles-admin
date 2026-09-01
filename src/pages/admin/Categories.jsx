@@ -6,7 +6,6 @@ import { useProducts } from "../../context/ProductContext"
 function Categories() {
   const { categories, setCategories } = useCategories()
   const { products, setProducts } = useProducts()
-
   const [newCategory, setNewCategory] = useState("")
   const [editingCategory, setEditingCategory] = useState(null)
   const [editName, setEditName] = useState("")
@@ -33,7 +32,6 @@ function Categories() {
     }
 
     setCategories([...categories, categoryName])
-
     setNewCategory("")
   }
 
@@ -62,7 +60,6 @@ function Categories() {
       if (category === editingCategory) {
         return updatedName
       }
-
       return category
     })
 
@@ -81,7 +78,6 @@ function Categories() {
 
     setCategories(updatedCategories)
     setProducts(updatedProducts)
-
     setEditingCategory(null)
     setEditName("")
   }
@@ -106,7 +102,6 @@ function Categories() {
     )
 
     setCategories(updatedCategories)
-
     setCategoryToDelete(null)
     setDeleteError("")
   }
@@ -119,47 +114,35 @@ function Categories() {
 
   return (
     <div className="categories-page">
-      {/* PAGE HEADER */}
-
       <div className="categories-header">
         <div>
           <h1>Categories</h1>
-
           <p>Manage your product categories</p>
         </div>
       </div>
 
-      {/* SUMMARY */}
-
       <div className="categories-summary">
         <div className="category-summary-card">
           <div className="summary-icon">🗂️</div>
-
           <div>
             <span>Total Categories</span>
-
             <strong>{categories.length}</strong>
           </div>
         </div>
 
         <div className="category-summary-card">
           <div className="summary-icon">📦</div>
-
           <div>
             <span>Total Products</span>
-
             <strong>{products.length}</strong>
           </div>
         </div>
       </div>
 
-      {/* ADD CATEGORY */}
-
       <div className="add-category-card">
         <div className="section-heading">
           <div>
             <h2>Add Category</h2>
-
             <p>Create a new product category</p>
           </div>
         </div>
@@ -171,18 +154,14 @@ function Categories() {
             value={newCategory}
             onChange={(event) => setNewCategory(event.target.value)}
           />
-
           <button type="submit">+ Add Category</button>
         </form>
       </div>
-
-      {/* CATEGORY LIST */}
 
       <div className="category-list-card">
         <div className="section-heading">
           <div>
             <h2>Categories</h2>
-
             <p>
               {categories.length} categor
               {categories.length === 1 ? "y" : "ies"}
@@ -193,14 +172,10 @@ function Categories() {
         <div className="category-list">
           {categories.map((category) => (
             <div className="category-item" key={category}>
-              {/* CATEGORY INFO */}
-
               <div className="category-info">
                 <div className="category-icon">🗂️</div>
-
                 <div>
                   <h3>{category}</h3>
-
                   <p>
                     {getProductCount(category)} product
                     {getProductCount(category) !== 1 ? "s" : ""}
@@ -236,9 +211,7 @@ function Categories() {
           {categories.length === 0 && (
             <div className="categories-empty">
               <div>🗂️</div>
-
               <h3>No categories yet</h3>
-
               <p>Add your first product category above.</p>
             </div>
           )}
@@ -252,11 +225,9 @@ function Categories() {
           <div className="section-heading">
             <div>
               <h2>Edit Category</h2>
-
               <p>Update the category name</p>
             </div>
           </div>
-
           <input
             type="text"
             value={editName}
@@ -304,4 +275,4 @@ function Categories() {
   )
 }
 
-export default Categories
+export default Categories;

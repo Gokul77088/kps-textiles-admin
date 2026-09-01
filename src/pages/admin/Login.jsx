@@ -6,15 +6,13 @@ function Login() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-
   const [errors, setErrors] = useState({})
+  const [showPassword, setShowPassword] = useState(false)
 
   function handleSubmit(event) {
     event.preventDefault()
 
     const newErrors = {}
-
-    // EMAIL VALIDATION
 
     if (!email.trim()) {
       newErrors.email = "Email is required"
@@ -22,27 +20,18 @@ function Login() {
       newErrors.email = "Please enter a valid email"
     }
 
-    // PASSWORD VALIDATION
-
     if (!password.trim()) {
       newErrors.password = "Password is required"
     }
-
     setErrors(newErrors)
-
-    // STOP IF VALIDATION FAILED
 
     if (Object.keys(newErrors).length > 0) {
       return
     }
 
-    // DUMMY AUTHENTICATION
-
     if (email === "admin@kps.com" && password === "admin123") {
-      // Save login status
       localStorage.setItem("admin-auth", "true")
 
-      // Redirect to dashboard
       navigate("/admin/dashboard")
     } else {
       setErrors({
@@ -52,46 +41,104 @@ function Login() {
   }
 
   return (
-    <div>
-      <h1>KPS Textiles Admin Login</h1>
-
-      <form onSubmit={handleSubmit}>
-        {/* EMAIL */}
-
-        <div>
-          <label>Email</label>
-
-          <input
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-
-          {errors.email && <p>{errors.email}</p>}
+    <div className="login-page">
+      <div className="login-container">
+        <div className="login-brand">
+          <div className="login-logo">KPS</div>
+          <h1>KPS Textiles</h1>
+          <p>Admin Panel</p>
         </div>
 
-        {/* PASSWORD */}
+        <div className="login-card">
+          <div className="login-heading">
+            <h2>Welcome Back</h2>
+            <p>Sign in to access your admin dashboard</p>
+          </div>
 
-        <div>
-          <label>Password</label>
+          <form onSubmit={handleSubmit} className="login-form">
+            <div className="login-field">
+              <label htmlFor="email">
+                Email Address
+              </label>
+              <div
+                className={
+                  errors.email
+                    ? "login-input-wrapper error"
+                    : "login-input-wrapper"
+                }
+              >
+                <span className="input-icon">
+                  ✉
+                </span>
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(event) => {
+                    setEmail(event.target.value)
 
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
+                    if (errors.email || errors.login) {
+                      setErrors({})
+                    }
+                  }}
+                />
+              </div>
+              {errors.email && <p className="login-error">{errors.email}</p>}
+            </div>
 
-          {errors.password && <p>{errors.password}</p>}
+            <div className="login-field">
+              <label htmlFor="password">Password</label>
+              <div
+                className={
+                  errors.password
+                    ? "login-input-wrapper error"
+                    : "login-input-wrapper"
+                }
+              >
+                <span className="input-icon">🔒</span>
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(event) => {
+                    setPassword(event.target.value)
+
+                    if (errors.password || errors.login) {
+                      setErrors({})
+                    }
+                  }}
+                />
+
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              </div>
+              {errors.password && (
+                <p className="login-error">{errors.password}</p>
+              )}
+            </div>
+
+            {errors.login && (
+              <div className="login-alert">
+                <span>⚠</span>
+                <p>{errors.login}</p>
+              </div>
+            )}
+
+            <button type="submit" className="login-button">
+              Login to Dashboard
+            </button>
+          </form>
         </div>
 
-        {/* LOGIN ERROR */}
-
-        {errors.login && <p>{errors.login}</p>}
-
-        {/* LOGIN BUTTON */}
-
-        <button type="submit">Login</button>
-      </form>
+        <p className="login-footer">© 2026 KPS Textiles. Admin Panel</p>
+      </div>
     </div>
   )
 }

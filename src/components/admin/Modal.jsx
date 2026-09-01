@@ -2,20 +2,9 @@ function Modal({ title, message, onConfirm, onCancel }) {
   return (
     <div className="modal-overlay">
       <div className="modal-box">
-        {/* MODAL ICON */}
-
         <div className="modal-icon">⚠️</div>
-
-        {/* TITLE */}
-
         <h2 className="modal-title">{title}</h2>
-
-        {/* MESSAGE */}
-
         <p className="modal-message">{message}</p>
-
-        {/* ACTION BUTTONS */}
-
         <div className="modal-actions">
           <button
             type="button"
@@ -24,7 +13,6 @@ function Modal({ title, message, onConfirm, onCancel }) {
           >
             Cancel
           </button>
-
           <button
             type="button"
             className="modal-confirm-button"

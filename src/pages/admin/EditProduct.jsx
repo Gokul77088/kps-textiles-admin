@@ -5,15 +5,10 @@ import { useCategories } from "../../context/CategoryContext"
 
 function EditProduct() {
   const { id } = useParams()
-
   const { products, setProducts } = useProducts()
-
   const { categories } = useCategories()
-
   const navigate = useNavigate()
-
   const product = products.find((product) => product.id === Number(id))
-
   const [formData, setFormData] = useState(() => ({
     name: product?.name || "",
     sku: product?.sku || "",
@@ -24,16 +19,12 @@ function EditProduct() {
     image: product?.image || "",
   }))
 
-  // PRODUCT NOT FOUND
-
   if (!product) {
     return (
       <div className="product-form-page">
         <div className="product-not-found">
           <h1>Product Not Found</h1>
-
           <p>The product you are trying to edit does not exist.</p>
-
           <button onClick={() => navigate("/admin/products")}>
             Back to Products
           </button>
@@ -42,24 +33,18 @@ function EditProduct() {
     )
   }
 
-  // HANDLE INPUT CHANGES
 
   function handleChange(event) {
     const { name, value } = event.target
-
     setFormData({
       ...formData,
       [name]: value,
     })
   }
 
-  // HANDLE IMAGE
-
   function handleImageChange(event) {
     const file = event.target.files[0]
-
     if (!file) return
-
     const reader = new FileReader()
 
     reader.onloadend = () => {
@@ -76,22 +61,14 @@ function EditProduct() {
 
   function handleSubmit(event) {
     event.preventDefault()
-
     const updatedProduct = {
       ...product,
-
       name: formData.name,
-
       sku: formData.sku,
-
       description: formData.description,
-
       price: Number(formData.price),
-
       quantity: Number(formData.quantity),
-
       category: formData.category,
-
       image: formData.image,
     }
 
@@ -104,47 +81,30 @@ function EditProduct() {
     })
 
     setProducts(updatedProducts)
-
     navigate("/admin/products")
   }
 
   return (
     <div className="product-form-page">
-      {/* ================================= */}
-      {/* PAGE HEADER */}
-      {/* ================================= */}
-
       <div className="product-form-header">
         <div>
           <h1>Edit Product</h1>
-
           <p>Update the details of your product</p>
         </div>
       </div>
 
-      {/* ================================= */}
-      {/* FORM CARD */}
-      {/* ================================= */}
-
       <div className="product-form-card">
         <form onSubmit={handleSubmit}>
-          {/* ================================= */}
-          {/* PRODUCT INFORMATION */}
-          {/* ================================= */}
 
           <div className="form-section">
             <div className="form-section-header">
               <h2>Product Information</h2>
-
               <p>Update the basic details of the product</p>
             </div>
 
             <div className="form-grid">
-              {/* PRODUCT NAME */}
-
               <div className="form-field">
                 <label>Product Name</label>
-
                 <input
                   type="text"
                   name="name"
@@ -154,11 +114,8 @@ function EditProduct() {
                 />
               </div>
 
-              {/* SKU */}
-
               <div className="form-field">
                 <label>SKU Code</label>
-
                 <input
                   type="text"
                   name="sku"
@@ -168,11 +125,8 @@ function EditProduct() {
                 />
               </div>
 
-              {/* DESCRIPTION */}
-
               <div className="form-field form-field-full">
                 <label>Description</label>
-
                 <textarea
                   name="description"
                   placeholder="Enter product description"
@@ -184,26 +138,16 @@ function EditProduct() {
             </div>
           </div>
 
-          {/* ================================= */}
-          {/* INVENTORY */}
-          {/* ================================= */}
-
           <div className="form-section">
             <div className="form-section-header">
               <h2>Inventory Details</h2>
-
               <p>Update the price, quantity and category</p>
             </div>
-
             <div className="form-grid">
-              {/* PRICE */}
-
               <div className="form-field">
                 <label>Price</label>
-
                 <div className="input-prefix">
                   <span>₹</span>
-
                   <input
                     type="number"
                     name="price"
@@ -215,11 +159,8 @@ function EditProduct() {
                 </div>
               </div>
 
-              {/* QUANTITY */}
-
               <div className="form-field">
                 <label>Quantity</label>
-
                 <input
                   type="number"
                   name="quantity"
@@ -230,18 +171,14 @@ function EditProduct() {
                 />
               </div>
 
-              {/* CATEGORY */}
-
               <div className="form-field">
                 <label>Category</label>
-
                 <select
                   name="category"
                   value={formData.category}
                   onChange={handleChange}
                 >
                   <option value="">Select Category</option>
-
                   {categories.map((category) => (
                     <option key={category} value={category}>
                       {category}
@@ -252,40 +189,27 @@ function EditProduct() {
             </div>
           </div>
 
-          {/* ================================= */}
-          {/* PRODUCT IMAGE */}
-          {/* ================================= */}
-
           <div className="form-section">
             <div className="form-section-header">
               <h2>Product Image</h2>
-
               <p>Update the image for this product</p>
             </div>
-
             <div className="image-upload-area">
-              {/* UPLOAD */}
-
               <label className="image-upload-box">
                 <input
                   type="file"
                   accept="image/*"
                   onChange={handleImageChange}
                 />
-
                 <span className="upload-icon">📷</span>
-
                 <strong>Click to change image</strong>
-
                 <span>PNG, JPG or JPEG</span>
               </label>
 
-              {/* CURRENT / NEW IMAGE */}
 
               {formData.image && (
                 <div className="image-preview">
                   <p>Image Preview</p>
-
                   <div className="preview-container">
                     <img src={formData.image} alt={formData.name} />
                   </div>
@@ -293,10 +217,6 @@ function EditProduct() {
               )}
             </div>
           </div>
-
-          {/* ================================= */}
-          {/* ACTIONS */}
-          {/* ================================= */}
 
           <div className="product-form-actions">
             <button
@@ -306,7 +226,6 @@ function EditProduct() {
             >
               Cancel
             </button>
-
             <button type="submit" className="submit-button">
               Save Changes
             </button>

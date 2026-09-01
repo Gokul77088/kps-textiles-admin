@@ -31,13 +31,219 @@ body,
   overflow: hidden;
 }
 
+.login-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  background-color: var(--background-color, #f5f5f5);
+}
+
+.login-container {
+  width: 100%;
+  max-width: 430px;
+}
+
+.login-brand {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-logo {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background-color: #222;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.login-brand h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-color, #222);
+}
+
+.login-brand p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #777;
+}
+
+.login-card {
+  padding: 32px;
+  background-color: var(--card-color, #ffffff);
+  border: 1px solid rgba(128, 128, 128, 0.18);
+  border-radius: 14px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.login-heading {
+  margin-bottom: 28px;
+}
+
+.login-heading h2 {
+  margin: 0;
+  font-size: 24px;
+  color: var(--text-color, #222);
+}
+
+.login-heading p {
+  margin: 7px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #777;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-color, #222);
+}
+
+.login-input-wrapper {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #d5d5d5;
+  border-radius: 8px;
+  background-color: var(--card-color, #ffffff);
+  transition: 0.2s ease;
+  box-sizing: border-box;
+}
+
+.login-input-wrapper:focus-within {
+  border-color: #222;
+  box-shadow: 0 0 0 3px rgba(34, 34, 34, 0.08);
+}
+
+.login-input-wrapper.error {
+  border-color: #d93025;
+}
+
+.input-icon {
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.login-input-wrapper input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-color, #222);
+  font-size: 14px;
+  min-width: 0;
+}
+
+.login-input-wrapper input::placeholder {
+  color: #999;
+}
+
+.password-toggle {
+  margin-right: 10px;
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.password-toggle:hover {
+  color: #111;
+}
+
+.login-error {
+  margin: 0;
+  font-size: 12px;
+  color: #d93025;
+}
+
+.login-alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 13px;
+  border-radius: 8px;
+  background-color: rgba(217, 48, 37, 0.08);
+  border: 1px solid rgba(217, 48, 37, 0.18);
+  color: #d93025;
+}
+
+.login-alert span {
+  font-size: 15px;
+}
+
+.login-alert p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.login-button {
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 8px;
+  background-color: #222;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.login-button:hover {
+  background-color: #000;
+  transform: translateY(-1px);
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
+
+.login-footer {
+  margin: 22px 0 0;
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+}
+
 /* ============================= */
 /* ADMIN BODY */
 /* ============================= */
 
 .admin-layout{
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
 }
 
@@ -48,25 +254,23 @@ body,
 }
 
 .admin-main {
-  position: absolute;
-  top: 75px;
+  position: fixed;
+  top: 70px;
+  right: 0;
   bottom: 0;
-  left: 70px;
-  width: calc(100% - 70px);
+  left: 240px;
+  padding: 20px;
   box-sizing: border-box;
-  padding: 15px;
-  scroll-behavior: smooth;
   overflow-y: auto;
   overflow-x: hidden;
-  transition:
-    left 0.25s ease,
-    width 0.25s ease;
+  scroll-behavior: smooth;
+  transition: left 0.25s ease;
 }
 
-.sidebar-expanded .admin-main {
-  margin-left: 175px;
-  width: calc(100% - 240px);
+.admin-layout.sidebar-collapsed .admin-main {
+  left: 70px;
 }
+
 
 /* ============================= */
 /* ADMIN SIDEBAR */
@@ -77,49 +281,50 @@ body,
   top: 70px;
   left: 0;
   bottom: 0;
-  width: 70px;
-  padding: 24px 10px;
+  width: 240px;
+  padding: 24px 16px;
   background-color: var(--card-color);
   border-right: 1px solid #ddd;
   box-sizing: border-box;
-  overflow-x: hidden;
   overflow-y: auto;
+  overflow-x: hidden;
   z-index: 900;
   transition: width 0.25s ease;
 }
 
-.sidebar-expanded .admin-sidebar {
-  width: 240px;
+.admin-sidebar.collapsed {
+  width: 70px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .sidebar-logo {
-  padding: 0 0 30px;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
+  padding: 0 12px 30px;
 }
 
 .sidebar-logo h2 {
   margin: 0;
-  font-size: 24px;
+  font-size: 28px;
 }
 
 .sidebar-logo span {
   font-size: 12px;
   letter-spacing: 3px;
+}
+
+.admin-sidebar.collapsed .sidebar-logo {
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+}
+
+.admin-sidebar.collapsed .sidebar-logo h2 {
+  font-size: 22px;
+}
+
+.admin-sidebar.collapsed .sidebar-logo span {
   display: none;
 }
-
-.sidebar-expanded .sidebar-logo {
-  text-align: left;
-  padding-left: 12px;
-}
-
-.sidebar-expanded .sidebar-logo span {
-  display: block;
-}
-
-/* NAVIGATION */
 
 .sidebar-nav {
   display: flex;
@@ -127,65 +332,68 @@ body,
   gap: 8px;
 }
 
-/* NAVIGATION LINK */
-
 .sidebar-link {
   display: flex;
   align-items: center;
   gap: 12px;
-  min-height: 46px;
-  padding: 12px 8px;
-  box-sizing: border-box;
+  padding: 12px 14px;
   text-decoration: none;
   color: var(--text-color);
   border-radius: 8px;
-  transition:
-    background-color 0.2s ease,
-    padding 0.25s ease;
-}
-
-.sidebar-collapsed .sidebar-link {
-  justify-content: center;
-}
-
-.sidebar-icon {
-  flex-shrink: 0;
-  width: 24px;
-  text-align: center;
-  font-size: 20px;
-  line-height: 1;
-}
-
-.sidebar-title {
-  display: block;
+  transition: 0.2s ease;
+  box-sizing: border-box;
   white-space: nowrap;
-  overflow: hidden;
-  opacity: 0;
-  width: 0;
-  transition:
-    opacity 0.15s ease,
-    width 0.25s ease;
 }
-
-.admin-sidebar.expanded .sidebar-title {
-  opacity: 1;
-  width: 160px;
-}
-
-
-/* HOVER */
 
 .sidebar-link:hover {
   background-color: rgba(128, 128, 128, 0.12);
 }
-
-/* ACTIVE LINK */
 
 .sidebar-link.active {
   background-color: #222;
   color: white;
 }
 
+.sidebar-icon {
+  flex-shrink: 0;
+  width: 24px;
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.sidebar-text {
+  overflow: hidden;
+  white-space: nowrap;
+  opacity: 1;
+  visibility: visible;
+  max-width: 160px;
+  transition:
+    opacity 0.2s ease,
+    max-width 0.25s ease;
+}
+
+.admin-sidebar.collapsed .sidebar-text {
+  opacity: 0;
+  max-width: 0;
+  visibility: hidden;
+  overflow: hidden;
+  width: 0;
+}
+
+.admin-sidebar.collapsed .sidebar-link {
+  justify-content: center;
+  gap: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.admin-sidebar.collapsed .sidebar-link.active {
+  width: 50px;
+  margin: 0 auto;
+}
 
 /* ============================= */
 /* ADMIN HEADER */
@@ -195,12 +403,12 @@ body,
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px;
+  padding: 0 20px;
   background-color: var(--bg-color);
   border-bottom: 1px solid #ddd;
   box-sizing: border-box;
@@ -218,15 +426,23 @@ body,
 }
 
 .header-brand span {
-  font-size: 12px;
-  opacity: 0.6;
+  font-size: 13px;
+  margin-top: 3px;
+  color: #888;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
 .header-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
 }
+
 
 .admin-profile {
   display: flex;
@@ -235,8 +451,8 @@ body,
 }
 
 .admin-avatar {
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -252,26 +468,26 @@ body,
 }
 
 .admin-info strong {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .admin-info span {
   font-size: 11px;
-  opacity: 0.6;
+  color: #888;
 }
 
 .logout-button {
-  padding: 9px 16px;
   border: none;
-  border-radius: 6px;
+  padding: 10px 16px;
+  border-radius: 7px;
   background-color: #222;
   color: white;
   cursor: pointer;
-  transition: 0.2s ease;
+  font-size: 14px;
 }
 
 .logout-button:hover {
-  opacity: 0.8;
+  background-color: #333;
 }
 
 /* ============================= */
@@ -306,21 +522,21 @@ body,
 }
 
 .menu-button {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  color: #222;
+  font-size: 27px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  background: transparent;
-  color: var(--text-color);
-  font-size: 24px;
-  cursor: pointer;
-  border-radius: 8px;
 }
 
 .menu-button:hover {
-  background-color: rgba(128, 128, 128, 0.12);
+  background-color: #e5e5e5;
 }
 
 /* ============================= */
@@ -406,6 +622,7 @@ body,
   justify-content: space-between;
   padding: 20px 24px;
   border-bottom: 1px solid #ddd;
+  gap: 5px;
 }
 
 .section-header h2 {
@@ -989,6 +1206,7 @@ body,
   gap: 20px;
   padding: 18px 24px;
   border-bottom: 1px solid #ddd;
+  min-height: 228px;
 }
 
 .category-item:last-child {
@@ -997,6 +1215,7 @@ body,
 
 .category-info {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 14px;
   min-width: 0;
@@ -1448,7 +1667,7 @@ body,
 
 .image-preview {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: 8px;
 }
 
@@ -1456,6 +1675,8 @@ body,
   margin: 0;
   font-size: 13px;
   font-weight: 600;
+  text-align: center;
+  text-decoration: underline;
 }
 
 .preview-container {
@@ -1676,26 +1897,83 @@ body,
 
 @media (max-width: 768px) {
 
-  /* =============================== */
-  /* HEADER */
-  /* =============================== */
+  .login-page {
+    padding: 25px 15px;
+    align-items: center;
+  }
+
+  .login-container {
+    max-width: 100%;
+  }
+
+  .login-brand {
+    margin-bottom: 22px;
+  }
+
+  .login-logo {
+    width: 56px;
+    height: 56px;
+    font-size: 21px;
+  }
+
+  .login-brand h1 {
+    font-size: 24px;
+  }
+
+  .login-card {
+    padding: 24px 20px;
+    border-radius: 12px;
+  }
+
+  .login-heading {
+    margin-bottom: 24px;
+  }
+
+  .login-heading h2 {
+    font-size: 21px;
+  }
+
+  .login-heading p {
+    font-size: 13px;
+  }
+
+  .login-form {
+    gap: 18px;
+  }
+
+  .login-input-wrapper {
+    height: 46px;
+  }
+
+  .login-button {
+    height: 46px;
+  }
+
+  .login-footer {
+    font-size: 11px;
+  }
 
   .admin-header {
-    height: 85px;
+    height: 70px;
     padding: 0 12px;
-    box-sizing: border-box;
+  }
+
+  .menu-button{
+    width: 42px;
+    height: 42px;
+    font-size: 24px;
   }
 
   .header-brand h2 {
-    font-size: 17px;
+    font-size: 19px;
   }
 
   .header-brand span {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .header-left {
-    gap: 8px;
+    gap: 10px;
   }
 
   .admin-info {
@@ -1703,88 +1981,77 @@ body,
   }
 
   .admin-avatar {
-    width: 34px;
-    height: 34px;
-    font-size: 14px;
+    width: 40px;
+    height: 40px;
   }
 
   .logout-button {
-    padding: 8px 11px;
-    font-size: 13px;
+    padding: 9px 12px
   }
 
   /* =============================== */
   /* SIDEBAR */
   /* =============================== */
-
-  .admin-sidebar {
-    top: 85px;
-    bottom: 0;
-    left: 0;
-    width: 70px !important;
-    padding: 20px 8px;
-    overflow-y: auto;
-    overflow-x: hidden;
+  
+ .admin-sidebar {
+    width: 240px;
+    top: 70px;
   }
 
-   .admin-main {
-    top: 85px;
-    left: 70px;
-    right: 0;
-    width: auto;
-    padding: 15px;
-    overflow-x: hidden;
-    overflow-y: auto;
+  .admin-sidebar.collapsed {
+    width: 70px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
-  /* MAIN WHEN SIDEBAR OPEN */
-
-  .sidebar-expanded .admin-main {
+  .admin-main {
+    top: 70px;
     left: 240px;
+    padding: 16px;
   }
 
-  /* LOGO */
-
-  .admin-sidebar.collapsed .sidebar-logo {
-    text-align: center;
-    padding-left: 0;
+  .admin-layout.sidebar-collapsed .admin-main {
+    left: 70px;
   }
 
-  .admin-sidebar.collapsed .sidebar-logo h2 {
-    font-size: 22px;
+  .admin-sidebar.collapsed .sidebar-text {
+    width: 0;
+    max-width: 0;
+    opacity: 0;
+    visibility: hidden;
   }
 
-  .admin-sidebar.collapsed .sidebar-logo span {
-    display: none;
+  .admin-sidebar.collapsed .sidebar-icon {
+    width: 24px;
+    min-width: 24px;
   }
 
   .admin-sidebar.collapsed .sidebar-link {
     justify-content: center;
-    padding-left: 8px;
-    padding-right: 8px;
+    gap: 0;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
-  .admin-sidebar.collapsed .sidebar-title {
-    max-width: 0;
-    width: 0;
-    opacity: 0;
-    overflow: hidden;
+  .admin-sidebar.collapsed .sidebar-link.active {
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .sidebar-icon {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    min-width: 24px;
-    font-size: 20px;
-  }
 
 
   /* =============================== */
   /* MAIN */
   /* =============================== */
+
+  .admin-main,
+  .admin-layout.sidebar-collapsed .admin-main {
+    top: 70px;
+    left: 70px;
+    width: calc(100% - 70px);
+    padding: 16px;
+  }
 
   .admin-main {
     top: 64px;
@@ -1950,10 +2217,12 @@ body,
     gap: 14px;
     width: 100%;
     padding: 16px;
+    min-height: 135px;
   }
 
   .category-info {
     width: 100%;
+    flex-direction: row;
   }
 
   /* ACTIONS */
@@ -2022,6 +2291,11 @@ body,
     min-height: 150px;
   }
 
+  .image-preview{
+    flex-direction: column;
+    margin: auto;
+  }
+
   .preview-container {
     width: 150px;
     height: 150px;
@@ -2030,6 +2304,10 @@ body,
   .product-form-actions {
     padding: 18px;
     flex-direction: column-reverse;
+  }
+
+  .recent-product{
+    padding: 16px 15px;
   }
 
   .cancel-button,

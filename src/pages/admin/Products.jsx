@@ -101,12 +101,9 @@ function Products() {
 
   return (
     <div className="products-page">
-      {/* PAGE HEADER */}
-
       <div className="products-header">
         <div>
           <h1>Products</h1>
-
           <p>Manage your textile products</p>
         </div>
 
@@ -115,28 +112,21 @@ function Products() {
         </Link>
       </div>
 
-      {/* SUMMARY */}
-
       <div className="products-summary">
         <div>
           <span>Total Products</span>
-
           <strong>{products.length}</strong>
         </div>
 
         <div>
           <span>Showing</span>
-
           <strong>{filteredProducts.length}</strong>
         </div>
       </div>
 
-      {/* SEARCH + FILTER */}
-
       <div className="products-toolbar">
         <div className="search-box">
           <span>🔍</span>
-
           <input
             type="text"
             placeholder="Search products..."
@@ -160,13 +150,10 @@ function Products() {
         </select>
       </div>
 
-      {/* PRODUCT TABLE */}
-
       <div className="products-table-card">
         <div className="table-header">
           <div>
             <h2>Product List</h2>
-
             <p>
               {filteredProducts.length} product
               {filteredProducts.length !== 1 ? "s" : ""}
@@ -179,20 +166,15 @@ function Products() {
           onDelete={setProductToDelete}
         />
 
-        {/* NO PRODUCTS */}
-
         {filteredProducts.length === 0 && (
           <div className="products-empty">
             <div className="empty-icon">📦</div>
-
             <h3>No products found</h3>
-
             <p>Try changing your search or category filter.</p>
           </div>
         )}
       </div>
 
-      {/* PAGINATION */}
 
       {totalPages > 0 && (
         <div className="pagination">

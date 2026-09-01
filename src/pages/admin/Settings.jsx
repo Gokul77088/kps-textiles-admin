@@ -59,7 +59,6 @@ function Settings() {
   // PASSWORD SUBMIT
   function handlePasswordSubmit(event) {
     event.preventDefault()
-
     const newErrors = {}
 
     // CURRENT PASSWORD
@@ -109,23 +108,17 @@ function Settings() {
         <p>Manage your account and application preferences</p>
       </div>
 
-      {/* ================================= */}
-      {/* PROFILE */}
-      {/* ================================= */}
-
       <div className="settings-card">
         <div className="settings-card-header">
           <div className="settings-card-icon">👤</div>
 
           <div>
             <h2>Profile Information</h2>
-
             <p>Update your admin account information</p>
           </div>
         </div>
 
         <form className="settings-form" onSubmit={handleProfileSubmit}>
-          {/* NAME */}
 
           <div className="settings-field">
             <label>Name</label>
@@ -154,10 +147,6 @@ function Settings() {
           </div>
         </form>
       </div>
-
-      {/* ================================= */}
-      {/* PASSWORD */}
-      {/* ================================= */}
 
       <div className="settings-card">
         <div className="settings-card-header">
@@ -225,17 +214,12 @@ function Settings() {
         </form>
       </div>
 
-      {/* ================================= */}
-      {/* THEME */}
-      {/* ================================= */}
-
       <div className="settings-card">
         <div className="settings-card-header">
           <div className="settings-card-icon">🎨</div>
 
           <div>
             <h2>Appearance</h2>
-
             <p>Choose how the admin panel looks</p>
           </div>
         </div>

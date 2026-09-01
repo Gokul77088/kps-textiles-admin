@@ -1,15 +1,12 @@
 import { NavLink } from "react-router-dom"
 
-function Sidebar({ sidebarOpen }) {
+function Sidebar({ isCollapsed }) {
   return (
     <aside
-      className={
-        sidebarOpen ? "admin-sidebar expanded" : "admin-sidebar collapsed"
-      }
+      className={isCollapsed ? "admin-sidebar collapsed" : "admin-sidebar"}
     >
       <div className="sidebar-logo">
         <h2>KPS</h2>
-
         <span>TEXTILES</span>
       </div>
 
@@ -21,8 +18,7 @@ function Sidebar({ sidebarOpen }) {
           }
         >
           <span className="sidebar-icon">📊</span>
-
-          <span className="sidebar-title">Dashboard</span>
+          <span className="sidebar-text">Dashboard</span>
         </NavLink>
 
         <NavLink
@@ -33,7 +29,7 @@ function Sidebar({ sidebarOpen }) {
         >
           <span className="sidebar-icon">📦</span>
 
-          <span className="sidebar-title">Products</span>
+          <span className="sidebar-text">Products</span>
         </NavLink>
 
         <NavLink
@@ -44,7 +40,7 @@ function Sidebar({ sidebarOpen }) {
         >
           <span className="sidebar-icon">🗂️</span>
 
-          <span className="sidebar-title">Categories</span>
+          <span className="sidebar-text">Categories</span>
         </NavLink>
 
         <NavLink
@@ -55,7 +51,7 @@ function Sidebar({ sidebarOpen }) {
         >
           <span className="sidebar-icon">⚙️</span>
 
-          <span className="sidebar-title">Settings</span>
+          <span className="sidebar-text">Settings</span>
         </NavLink>
       </nav>
     </aside>

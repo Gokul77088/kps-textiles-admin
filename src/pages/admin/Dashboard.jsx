@@ -14,8 +14,6 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-      {/* PAGE HEADER */}
-
       <div className="dashboard-header">
         <div>
           <h1>Dashboard</h1>
@@ -23,36 +21,25 @@ function Dashboard() {
         </div>
       </div>
 
-      {/* STATISTICS */}
-
       <div className="stats-grid">
-        {/* PRODUCTS */}
-
         <div className="stat-card">
           <div className="stat-icon">📦</div>
-
           <div>
             <p>Total Products</p>
             <h2>{products.length}</h2>
           </div>
         </div>
 
-        {/* CATEGORIES */}
-
         <div className="stat-card">
           <div className="stat-icon">🗂️</div>
-
           <div>
             <p>Total Categories</p>
             <h2>{categories.length}</h2>
           </div>
         </div>
 
-        {/* OUT OF STOCK */}
-
         <div className="stat-card">
           <div className="stat-icon">⚠️</div>
-
           <div>
             <p>Out of Stock</p>
             <h2>{outOfStockProducts.length}</h2>
@@ -60,21 +47,16 @@ function Dashboard() {
         </div>
       </div>
 
-      {/* RECENT PRODUCTS */}
-
       <div className="dashboard-section">
         <div className="section-header">
           <div>
             <h2>Recent Products</h2>
             <p>Latest products added to your store</p>
           </div>
-
           <Link to="/admin/products" className="view-all-link">
             View All
           </Link>
         </div>
-
-        {/* PRODUCTS */}
 
         {recentProducts.length > 0 ? (
           <div className="recent-products">
@@ -86,19 +68,17 @@ function Dashboard() {
 
                 <div className="product-info">
                   <h3>{product.name}</h3>
-
                   <p>{product.category}</p>
                 </div>
 
                 <div className="product-price">
                   <strong>₹{product.price}</strong>
-
                   <span
                     className={
                       product.quantity > 0
                         ? "stock in-stock"
                         : "stock out-stock"
-                    }
+                    } 
                   >
                     {product.quantity > 0 ? "In Stock" : "Out of Stock"}
                   </span>
@@ -109,7 +89,6 @@ function Dashboard() {
         ) : (
           <div className="empty-state">
             <p>No products available.</p>
-
             <Link to="/admin/products/add">Add your first product</Link>
           </div>
         )}
@@ -118,4 +97,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default Dashboard;

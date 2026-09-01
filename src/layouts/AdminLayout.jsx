@@ -5,25 +5,27 @@ import Sidebar from "../components/admin/Sidebar"
 import "../styles/admin.css"
 
 function AdminLayout() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
 
-  function toggleSidebar() {
-    setSidebarOpen((previous) => !previous)
+  function handleMenuClick() {
+    setIsSidebarCollapsed((previousState) => {
+      return !previousState
+    })
   }
 
   return (
     <div
       className={
-        sidebarOpen
-          ? "admin-layout sidebar-expanded"
-          : "admin-layout sidebar-collapsed"
+        isSidebarCollapsed
+          ? "admin-layout sidebar-collapsed"
+          : "admin-layout sidebar-expanded"
       }
     >
-      <AdminHeader onMenuClick={toggleSidebar} />
+
+      <AdminHeader onMenuClick={handleMenuClick} />
 
       <div className="admin-body">
-        <Sidebar sidebarOpen={sidebarOpen} />
-
+        <Sidebar isCollapsed={isSidebarCollapsed} />
         <main className="admin-main">
           <Outlet />
         </main>

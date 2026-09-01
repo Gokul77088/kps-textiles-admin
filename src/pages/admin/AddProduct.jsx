@@ -33,7 +33,6 @@ function AddProduct() {
     }
 
     setProducts([...products, newProduct])
-
     navigate("/admin/products")
   }
 
@@ -65,35 +64,24 @@ function AddProduct() {
 
   return (
     <div className="product-form-page">
-      {/* PAGE HEADER */}
-
       <div className="product-form-header">
         <div>
           <h1>Add Product</h1>
-
           <p>Add a new product to your inventory</p>
         </div>
       </div>
 
-      {/* FORM CARD */}
-
       <div className="product-form-card">
         <form onSubmit={handleSubmit}>
-          {/* BASIC INFORMATION */}
-
           <div className="form-section">
             <div className="form-section-header">
               <h2>Product Information</h2>
-
               <p>Enter the basic details of the product</p>
             </div>
 
             <div className="form-grid">
-              {/* PRODUCT NAME */}
-
               <div className="form-field">
                 <label>Product Name</label>
-
                 <input
                   type="text"
                   name="name"
@@ -103,11 +91,8 @@ function AddProduct() {
                 />
               </div>
 
-              {/* SKU */}
-
               <div className="form-field">
                 <label>SKU Code</label>
-
                 <input
                   type="text"
                   name="sku"
@@ -117,11 +102,8 @@ function AddProduct() {
                 />
               </div>
 
-              {/* DESCRIPTION */}
-
               <div className="form-field form-field-full">
                 <label>Description</label>
-
                 <textarea
                   name="description"
                   placeholder="Enter product description"
@@ -133,24 +115,17 @@ function AddProduct() {
             </div>
           </div>
 
-          {/* INVENTORY INFORMATION */}
-
           <div className="form-section">
             <div className="form-section-header">
               <h2>Inventory Details</h2>
-
               <p>Set the price, quantity and category</p>
             </div>
 
             <div className="form-grid">
-              {/* PRICE */}
-
               <div className="form-field">
                 <label>Price</label>
-
                 <div className="input-prefix">
                   <span>₹</span>
-
                   <input
                     type="number"
                     name="price"
@@ -162,11 +137,8 @@ function AddProduct() {
                 </div>
               </div>
 
-              {/* QUANTITY */}
-
               <div className="form-field">
                 <label>Quantity</label>
-
                 <input
                   type="number"
                   name="quantity"
@@ -177,18 +149,14 @@ function AddProduct() {
                 />
               </div>
 
-              {/* CATEGORY */}
-
               <div className="form-field">
                 <label>Category</label>
-
                 <select
                   name="category"
                   value={formData.category}
                   onChange={handleChange}
                 >
                   <option value="">Select Category</option>
-
                   {categories.map((category) => (
                     <option key={category} value={category}>
                       {category}
@@ -199,12 +167,9 @@ function AddProduct() {
             </div>
           </div>
 
-          {/* PRODUCT IMAGE */}
-
           <div className="form-section">
             <div className="form-section-header">
               <h2>Product Image</h2>
-
               <p>Upload an image for this product</p>
             </div>
 
@@ -217,18 +182,13 @@ function AddProduct() {
                 />
 
                 <span className="upload-icon">📷</span>
-
                 <strong>Click to upload image</strong>
-
                 <span>PNG, JPG or JPEG</span>
               </label>
-
-              {/* IMAGE PREVIEW */}
 
               {formData.image && (
                 <div className="image-preview">
                   <p>Image Preview</p>
-
                   <div className="preview-container">
                     <img src={formData.image} alt="Product preview" />
                   </div>
@@ -236,8 +196,6 @@ function AddProduct() {
               )}
             </div>
           </div>
-
-          {/* ACTIONS */}
 
           <div className="product-form-actions">
             <button

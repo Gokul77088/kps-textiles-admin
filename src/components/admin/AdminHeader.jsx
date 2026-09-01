@@ -10,11 +10,12 @@ function AdminHeader({ onMenuClick }) {
 
   return (
     <header className="admin-header">
+
       <div className="header-left">
         <button
+          type="button"
           className="menu-button"
           onClick={onMenuClick}
-          type="button"
           aria-label="Toggle sidebar"
         >
           ☰
@@ -26,6 +27,7 @@ function AdminHeader({ onMenuClick }) {
         </div>
       </div>
 
+
       <div className="header-right">
         <div className="admin-profile">
           <div className="admin-avatar">A</div>
@@ -36,7 +38,7 @@ function AdminHeader({ onMenuClick }) {
           </div>
         </div>
 
-        <button className="logout-button" onClick={handleLogout}>
+        <button type="button" className="logout-button" onClick={handleLogout}>
           Logout
         </button>
       </div>
